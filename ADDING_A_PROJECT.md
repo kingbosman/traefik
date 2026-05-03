@@ -5,19 +5,19 @@ The container name in step 2 follows Docker Compose's default naming: `<project-
 ## 1. Add the domain to the cert
 
 ```bash
-cd ~/projects/traefik/certs
+cd ~/projects/github.com/kingbosman/traefik/certs
 mkcert -cert-file local.pem -key-file local-key.pem "analyzer.test" "traefik.test" "newproject.test" localhost 127.0.0.1
 ```
 
 Then restart Traefik to pick up the new cert:
 
 ```bash
-cd ~/projects/traefik && docker compose restart
+cd ~/projects/github.com/kingbosman/traefik && docker compose restart
 ```
 
 ## 2. Add a router file
 
-Create `~/projects/traefik/dynamic/newproject.yml`:
+Create `~/projects/github.com/kingbosman/traefik/dynamic/newproject.yml`:
 
 ```yaml
 http:
