@@ -1,1 +1,4 @@
 certs/
+dynamic/*
+!dynamic/tls.yml
+!dynamic/traefik-dashboard.yml
