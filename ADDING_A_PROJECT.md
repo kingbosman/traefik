@@ -4,9 +4,10 @@ The container name in step 2 follows Docker Compose's default naming: `<project-
 
 ## 1. Add the domain to the cert
 
+Add the domain to `certs/domains.txt`, then run:
+
 ```bash
-cd ~/path/to/traefik/certs
-mkcert -cert-file local.pem -key-file local-key.pem "traefik.test" "newproject.test" localhost 127.0.0.1
+cd ~/path/to/traefik && ./regen-cert.sh
 ```
 
 Then restart Traefik to pick up the new cert:

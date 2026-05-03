@@ -6,6 +6,12 @@ This only needs to be done once after cloning the repo.
 
 - [Docker](https://docs.docker.com/get-docker/) with the Compose plugin
 - [mkcert](https://github.com/FiloSottile/mkcert)
+- `libnss3-tools` (required for Firefox/Chrome certificate trust)
+
+On Ubuntu/Debian:
+```bash
+sudo apt install libnss3-tools
+```
 
 ## 1. Install the local CA
 
@@ -25,15 +31,13 @@ Traefik and all proxied projects share this network.
 
 ## 3. Generate the initial certificate
 
-The `certs/` directory is not included in the repo. Create it and generate a cert:
-
 ```bash
 mkdir -p ~/path/to/traefik/certs
-cd ~/path/to/traefik/certs
-mkcert -cert-file local.pem -key-file local-key.pem "traefik.test" localhost 127.0.0.1
+printf 'traefik.test\nlocalhost\n127.0.0.1\n' > ~/path/to/traefik/certs/domains.txt
+cd ~/path/to/traefik && ./regen-cert.sh
 ```
 
-Add more domains to this command whenever you add a new project (see `ADDING_A_PROJECT.md`).
+To add domains later, edit `certs/domains.txt` and re-run `./regen-cert.sh` (see `ADDING_A_PROJECT.md`).
 
 ## 4. Add traefik.test to /etc/hosts
 
