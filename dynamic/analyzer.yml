@@ -1,0 +1,14 @@
+http:
+  routers:
+    analyzer:
+      rule: "Host(`analyzer.test`)"
+      tls: {}
+      service: analyzer
+      entryPoints:
+        - websecure
+
+  services:
+    analyzer:
+      loadBalancer:
+        servers:
+          - url: "http://analyzer-nginx-1:80"

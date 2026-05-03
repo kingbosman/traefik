@@ -1,0 +1,8 @@
+http:
+  routers:
+    dashboard:
+      rule: "Host(`traefik.test`)"
+      tls: {}
+      service: api@internal
+      entryPoints:
+        - websecure
